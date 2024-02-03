@@ -1,6 +1,7 @@
 import { useQueryIssue } from "../../hooks/use-query";
 import IssuesFilter from "./IssuesFilter";
 import IssuListPage from "./issueList";
+import IssuePagination from "./issuePagination";
 
 const MainPage = () => {
   const { issuesList } = useQueryIssue();
@@ -17,6 +18,7 @@ const MainPage = () => {
       {issuesList.map((list, index) => (
         <IssuListPage key={index} list={list} />
       ))}
+      <IssuePagination />
     </>
   );
 };

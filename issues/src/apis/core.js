@@ -8,7 +8,7 @@ const octokit = new Octokit({
 const getRepoIssues = async () => {
   const owner = "angular";
   const repo = "angular-cli";
-  const perPage = 50;
+  const perPage = 100;
 
   try {
     const response = await octokit.request(
