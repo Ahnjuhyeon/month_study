@@ -9,7 +9,6 @@ const getRepoIssues = async () => {
   const owner = "angular";
   const repo = "angular-cli";
   const perPage = 100;
-
   try {
     const response = await octokit.request(
       `GET /repos/${owner}/${repo}/issues`,
