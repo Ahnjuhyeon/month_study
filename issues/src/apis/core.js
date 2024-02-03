@@ -4,8 +4,8 @@ import { useEffect } from "react";
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 });
-
-const getRepoIssues = async () => {
+//
+const getRepoIssues = async ({ pageParam = 1 }) => {
   const owner = "angular";
   const repo = "angular-cli";
   const perPage = 100;
@@ -16,6 +16,7 @@ const getRepoIssues = async () => {
         owner: owner,
         repo: repo,
         per_page: perPage,
+        page: pageParam,
         headers: {
           "X-GitHub-Api-Version": "2022-11-28",
         },
@@ -32,7 +33,7 @@ const getRepoIssues = async () => {
 
 export const getDataList = async () => {
   try {
-    const data = await getRepoIssues();
+    const data = await getRepoIssues({ pageParam: 1 });
     // console.log("Data received inside getDataList:", data);
     return data; // 이 부분을 추가해야 합니다.
   } catch (error) {

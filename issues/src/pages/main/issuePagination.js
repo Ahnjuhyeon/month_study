@@ -7,6 +7,7 @@ const IssuePagination = () => {
   const { issuesList } = useQueryIssue();
   const itemsPerPage = 10;
   console.log(issuesList);
+
   const renderPageButtons = () => {
     if (!issuesList) return null;
 
