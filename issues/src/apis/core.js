@@ -23,7 +23,7 @@ const getRepoIssues = async () => {
       }
     );
     const data = response.data;
-    console.log(data); // 데이터 확인을 위한
+    // console.log(data); // 데이터 확인을 위한
     return data;
   } catch (error) {
     console.error("Error fetching repo issues:", error.message);
@@ -31,23 +31,33 @@ const getRepoIssues = async () => {
   }
 };
 
-const Page = () => {
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getRepoIssues();
-        // 데이터를 사용하는 작업 추가
-        console.log("Data received:", data);
-      } catch (error) {
-        // 오류 처리
-        console.error("Error in fetchData:", error.message);
-      }
-    };
-
-    fetchData();
-  }, []); // 변경: 불필요한 함수 래핑 제거
-
-  return <>dd</>;
+export const getDataList = async () => {
+  try {
+    const data = await getRepoIssues();
+    // console.log("Data received inside getDataList:", data);
+    return data; // 이 부분을 추가해야 합니다.
+  } catch (error) {
+    console.error("Error in getDataList:", error.message);
+    throw error;
+  }
 };
+// const Page = () => {
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const data = await getRepoIssues();
+//         // 데이터를 사용하는 작업 추가
+//         console.log("Data received:", data);
+//       } catch (error) {
+//         // 오류 처리
+//         console.error("Error in fetchData:", error.message);
+//       }
+//     };
 
-export default Page;
+//     fetchData();
+//   }, []); // 변경: 불필요한 함수 래핑 제거
+
+//   return <>dd</>;
+// };
+
+// export default Page;
