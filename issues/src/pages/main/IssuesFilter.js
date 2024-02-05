@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 const IssuesFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const sort = searchParams.get("sort") ?? "created";
+  const state = searchParams.get("state") ?? "open";
 
   const optionTypes = [
     { label: "-- 게시글 정렬 --", value: "created" },
@@ -12,19 +13,35 @@ const IssuesFilter = () => {
     { label: "댓글 순", value: "comments" },
   ];
 
+  const optionStaterTypes = [
+    { label: "-- 게시글 정렬 --", value: "open" },
+    { label: "open", value: "open" },
+    { label: "closed", value: "closed" },
+  ];
+
   const onIssuesFilter = (e) => {
     const value = e.target.value;
     console.log(value);
     setSearchParams({ sort: value });
-    // switch(value){
-    //   case '생성 순':
-    // }
+  };
+
+  const onIssuesFilterState = (e) => {
+    const value = e.target.value;
+    console.log(value);
+    setSearchParams({ state: value });
   };
 
   return (
     <Wrapper>
       <select onChange={onIssuesFilter} value={sort}>
         {optionTypes.map((option, index) => (
+          <option key={index} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+      <select onChange={onIssuesFilterState} value={state}>
+        {optionStaterTypes.map((option, index) => (
           <option key={index} value={option.value}>
             {option.label}
           </option>
