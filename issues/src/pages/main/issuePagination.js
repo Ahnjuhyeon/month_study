@@ -1,22 +1,20 @@
 import { useState } from "react";
 import { styled } from "styled-components";
 
-const IssuePagination = ({ issuesList }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
-  console.log(issuesList);
+const IssuePagination = ({ currentPage, onPageChange, totalIssues }) => {
+  const itemsPerPage = 10;
 
   const renderPageButtons = () => {
-    if (!issuesList) return null;
+    // if (!issuesList) return null;
 
-    const totalPages = Math.ceil(issuesList.length / itemsPerPage);
+    const totalPages = Math.ceil(totalIssues / itemsPerPage);
 
     const pageButtons = [];
     for (let i = 1; i <= totalPages; i++) {
       pageButtons.push(
         <Button
           key={i}
-          onClick={() => setCurrentPage(i)}
+          onClick={() => onPageChange(i)}
           style={{ backgroundColor: currentPage === i ? "blue" : "#fff" }}
         >
           {i}
@@ -26,16 +24,13 @@ const IssuePagination = ({ issuesList }) => {
 
     return pageButtons;
   };
-  //
-  const onStartBtn = () => setCurrentPage(1);
-  const onBefore = () =>
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  const onStartBtn = () => onPageChange(1);
+  const onBefore = () => onPageChange(Math.max(currentPage - 1, 1));
   const onNext = () =>
-    setCurrentPage((prevPage) =>
-      Math.min(prevPage + 1, Math.ceil(issuesList.length / itemsPerPage))
+    onPageChange(
+      Math.min(currentPage + 1, Math.ceil(totalIssues / itemsPerPage))
     );
-  const onEndBtn = () =>
-    setCurrentPage(Math.ceil(issuesList.length / itemsPerPage));
+  const onEndBtn = () => onPageChange(Math.ceil(totalIssues / itemsPerPage));
   return (
     <PaginationBtn>
       <Button onClick={onStartBtn}>《</Button>
