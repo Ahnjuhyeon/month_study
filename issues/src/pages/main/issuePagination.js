@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { styled } from "styled-components";
-import { useQueryIssue } from "../../hooks/use-query";
 
 const IssuePagination = ({ issuesList }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
-  // console.log(issuesList);
+  const itemsPerPage = 5;
+  console.log(issuesList);
 
   const renderPageButtons = () => {
     if (!issuesList) return null;
