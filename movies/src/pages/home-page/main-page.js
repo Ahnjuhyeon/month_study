@@ -1,4 +1,12 @@
+import Banner from "./components/banner";
+import MovieList from "./components/movie-list";
+
 const MainPage = () => {
-  return <>yupppi</>;
+  return (
+    <>
+      <Banner />
+      <MovieList />
+    </>
+  );
 };
 export default MainPage;
