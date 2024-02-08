@@ -5,7 +5,7 @@ const IssuesFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const sort = searchParams.get("sort") ?? "created";
   const state = searchParams.get("state") ?? "open";
-  const count = searchParams.get("count") ?? 10;
+  const per_page = searchParams.get("per_page") ?? 10;
 
   const optionTypes = [
     { label: "-- 게시글 정렬 --", value: "created" },
@@ -29,19 +29,28 @@ const IssuesFilter = () => {
   const onIssuesFilter = (e) => {
     const value = e.target.value;
     console.log(value);
-    setSearchParams({ sort: value });
+    // setSearchParams((prev) => {
+    //   return { ...prev, sort: value };
+    // });
+    searchParams.append("sort", value);
   };
 
   const onIssuesFilterState = (e) => {
     const value = e.target.value;
     console.log(value);
-    setSearchParams({ state: value });
+    // setSearchParams((prev) => {
+    //   return { ...prev, state: value };
+    // });
+    searchParams.append("state", value);
   };
 
   const onIssuesFilterCount = (e) => {
     const value = e.target.value;
     console.log(value);
-    setSearchParams({ count: value });
+    // setSearchParams((prev) => {
+    //   return { ...prev, per_page: value };
+    // });
+    searchParams.append("per_page", value);
   };
 
   return (
@@ -60,7 +69,7 @@ const IssuesFilter = () => {
           </option>
         ))}
       </select>
-      <select onChange={onIssuesFilterCount} value={count}>
+      <select onChange={onIssuesFilterCount} value={per_page}>
         {optionCountTypes.map((option, index) => (
           <option key={index} value={option.value}>
             {option.label}

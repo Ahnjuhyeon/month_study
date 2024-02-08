@@ -58,7 +58,7 @@ const Logo = styled.div`
 
 const FilterBar = styled.ul`
   position: absolute;
-  left: 8%;
+  left: 9%;
   width: 36%;
   ${flexAlignCenter}
   justify-content: space-evenly;

@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 import { useQueryMovieInfinity } from "../../../hooks/use-query";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { MOVIE_QUERY_KEY } from "../../../consts/queryKey";
+import OneMovieContent from "../../../components/one-movie-content";
 
 const MovieList = () => {
   //   //나중에 다 지울거지~
@@ -30,7 +31,12 @@ const MovieList = () => {
   console.log(movieList);
   return (
     <Wrapper>
-      <MovieGrid></MovieGrid>
+      <MovieGrid>
+        {movieList &&
+          movieList.results.map((movie, index) => (
+            <OneMovieContent key={index} movie={movie} />
+          ))}
+      </MovieGrid>
     </Wrapper>
   );
 };
@@ -40,7 +46,9 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 const MovieGrid = styled.div`
-  width: 933px;
+  padding-top: 78px;
+  width: 1100px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 50px;
