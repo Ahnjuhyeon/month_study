@@ -16,9 +16,10 @@ const FooterWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   height: 150px;
-  margin-top: 40px;
+  margin-top: 78px;
   line-height: 10px;
-  background-color: rgba(0, 0, 0, 0.9);
+  /* background-color: rgba(0, 0, 0, 0.9); */
+  background-color: black;
   color: white;
 `;
 /* background-color: ${({ theme }) => theme.COLORS.black};

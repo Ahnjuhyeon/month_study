@@ -34,7 +34,7 @@ const sizeCSS = {
 const fontCSS = {
   small: css`
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 500;
     color: black;
   `,
   large: css`
@@ -71,7 +71,7 @@ const Input = styled.input`
   box-shadow: 0px 2px 7px 5px rgba(0, 0, 0, 0.2);
   transition: all 0.5s;
   &:focus {
-    background-color: ${({ theme }) => theme.COLORS.white};
+    background-color: ${({ theme }) => theme.COLORS.white}; 
   }
 
 */
