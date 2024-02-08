@@ -2,16 +2,19 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { styled } from "styled-components";
 
-const IssuePagination = ({ currentPage, onPageChange, totalIssues }) => {
-  const itemsPerPage = 10;
-  const [searchParams, setSearchParams] = useSearchParams();
-  const page = searchParams.get("page") ?? 1;
-
-  // console.log(page);
+const IssuePagination = ({
+  currentPage,
+  onPageChange,
+  totalIssues,
+  perPage,
+}) => {
+  const [searchParams] = useSearchParams();
+  const itemsPerPage = searchParams.get("per_page") ?? 10;
+  // const page = searchParams.get("page") ?? 1;
 
   //페이지네이션 버튼 함수
   const renderPageButtons = () => {
-    const totalPages = Math.ceil(totalIssues / itemsPerPage);
+    const totalPages = Math.ceil(totalIssues / perPage);
     const pageButtons = [];
     for (let i = 1; i <= totalPages; i++) {
       pageButtons.push(
