@@ -33,15 +33,15 @@ const Header = () => {
 };
 export default Header;
 const HeaderWrapper = styled.div`
-  background-color: aliceblue;
+  background-color: black;
   width: 100%;
-  height: 80px;
+  height: 100px;
   position: fixed;
   z-index: 100;
 `;
 const HeaderBox = styled.div`
   width: 1280px;
-  height: 80px;
+  height: 100px;
   margin: 0 auto;
   background: rgba(0, 0, 0, 0.9);
   display: flex;
