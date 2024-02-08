@@ -51,5 +51,5 @@ const MovieGrid = styled.div`
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-row-gap: 50px;
+  gap: 40px;
 `;

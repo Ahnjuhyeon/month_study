@@ -44,10 +44,12 @@ const HeaderBox = styled.div`
   height: 100px;
   margin: 0 auto;
   background: rgba(0, 0, 0, 0.9);
+  /* background-color: darkgrey; */
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
+  position: relative;
 `;
 
 const Logo = styled.div`

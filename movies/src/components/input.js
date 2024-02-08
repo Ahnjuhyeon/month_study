@@ -20,8 +20,8 @@ const variantCSS = {
 
 const sizeCSS = {
   small: css`
-    width: 200px;
-    height: 30px;
+    width: 350px;
+    height: 40px;
     border-radius: 20px;
   `,
   large: css`
@@ -35,10 +35,12 @@ const fontCSS = {
   small: css`
     font-size: 16px;
     font-weight: 300;
+    color: black;
   `,
   large: css`
     font-size: 26px;
     font-weight: bold;
+    color: black;
   `,
 };
 
@@ -48,6 +50,7 @@ const Input = styled.input`
   outline: none;
   padding: 0;
   margin: 0;
+  padding-left: 30px;
   cursor: pointer;
   transition: all 0.5s;
 

@@ -11,7 +11,7 @@ const SearchBox = () => {
           <img src={HeaderIcon.search} />
         </SearchIcon>
         <form>
-          <MovieInput variant="primary" size="large" />
+          <MovieInput variant="primary" size="small" font="small" />
         </form>
       </InputBox>
     </>
@@ -20,14 +20,13 @@ const SearchBox = () => {
 export default SearchBox;
 const InputBox = styled.div`
   position: absolute;
-  left: 55%;
-  width: 40%;
+  right: 0;
   /* transform: translateY(-50%); */
   ${flexCenter}
 `;
 const SearchIcon = styled.div`
   position: absolute;
-  right: 18%;
+  right: 5%;
   margin-top: 10px;
   margin-bottom: 5px;
   cursor: pointer;
