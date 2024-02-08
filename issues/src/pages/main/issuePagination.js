@@ -6,7 +6,10 @@ const IssuePagination = ({ currentPage, onPageChange, totalIssues }) => {
   const itemsPerPage = 10;
   const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get("page") ?? 1;
-  console.log(page);
+
+  // console.log(page);
+
+  //페이지네이션 버튼 함수
   const renderPageButtons = () => {
     const totalPages = Math.ceil(totalIssues / itemsPerPage);
     const pageButtons = [];
@@ -24,7 +27,7 @@ const IssuePagination = ({ currentPage, onPageChange, totalIssues }) => {
     }
     return pageButtons;
   };
-
+  //버튼
   const onStartBtn = () => onPageChange(1);
   const onBefore = () => onPageChange(Math.max(currentPage - 1, 1));
   const onNext = () =>
@@ -32,6 +35,7 @@ const IssuePagination = ({ currentPage, onPageChange, totalIssues }) => {
       Math.min(currentPage + 1, Math.ceil(totalIssues / itemsPerPage))
     );
   const onEndBtn = () => onPageChange(Math.ceil(totalIssues / itemsPerPage));
+
   return (
     <PaginationBtn>
       <Button onClick={onStartBtn}>《</Button>
