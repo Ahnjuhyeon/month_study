@@ -20,10 +20,11 @@ const DetailPage = () => {
         </Contents>
       </InfoContent>
       {/* 리뷰컴포넌트 */}
-      <div>
+      <div style={{ textAlign: "center" }}>리뷰보기</div>
+      <SimilarMovie>
         <div>이 영화와 비슷해요!</div>
         <div>ID??</div>
-      </div>
+      </SimilarMovie>
     </Wrapper>
   );
 };
@@ -56,6 +57,7 @@ const ContentTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 15px;
 
   div:first-child {
     font-size: 54px;
@@ -76,4 +78,10 @@ const Contents = styled.div`
     font-size: 26px;
     font-weight: 300;
   }
+`;
+
+const SimilarMovie = styled.div`
+  width: 1100px;
+  margin: 0 auto;
+  background-color: aliceblue;
 `;
