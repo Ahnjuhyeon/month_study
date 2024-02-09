@@ -32,6 +32,7 @@ export default DetailPage;
 const Wrapper = styled.div`
   width: 1280px;
   margin: 0 auto;
+  padding-top: 100px;
 `;
 const VideoContent = styled.div`
   background-color: beige;

@@ -44,6 +44,7 @@ export default MovieList;
 const Wrapper = styled.div`
   width: 1280px;
   margin: 0 auto;
+  padding-top: 100px;
 `;
 const MovieGrid = styled.div`
   padding-top: 78px;
