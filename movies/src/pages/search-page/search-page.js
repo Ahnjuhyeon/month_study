@@ -61,8 +61,8 @@ const MovieInfo = styled.div`
 //밑줄
 const Hr = styled.hr`
   background-color: #bdbdbd;
-  height: 1px; /* hr의 높이를 지정해주어야 색상이 표시됩니다. */
-  border: none; /* border를 없애고 싶다면 지정해줄 수 있습니다. */
+  height: 1px;
+  border: none;
 `;
 
 const Title = styled.div`
