@@ -28,7 +28,7 @@ const MovieList = () => {
     queryKey: [MOVIE_QUERY_KEY.NOW_PLAYING],
     queryFn: () => fetchMovies(`/movie/now_playing`),
   });
-  console.log(movieList);
+  // console.log(movieList);
   return (
     <Wrapper>
       <MovieGrid>
@@ -44,7 +44,6 @@ export default MovieList;
 const Wrapper = styled.div`
   width: 1280px;
   margin: 0 auto;
-  padding-top: 100px;
 `;
 const MovieGrid = styled.div`
   padding-top: 78px;

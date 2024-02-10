@@ -9,7 +9,7 @@ const SearchPage = () => {
         <MovieInfo>
           <Title>movie.title</Title>
           <Hr />
-          <p>movie.release_date</p>
+          <div>movie.release_date</div>
           <Content>
             movie.overviewmovie.overviewmovie.
             movie.overviewmovie.overviewmovie.

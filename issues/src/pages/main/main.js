@@ -61,5 +61,5 @@ const MainPage = () => {
 export default MainPage;
 /*
 마지막 페이지 가면 버튼 닫아놓는거
-쿼리스트링 유지 
+쿼리스트링 유지?
 */

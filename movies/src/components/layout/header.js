@@ -35,13 +35,13 @@ export default Header;
 const HeaderWrapper = styled.div`
   background-color: black;
   width: 100%;
-  height: 100px;
+  height: 113px;
   position: fixed;
   z-index: 100;
 `;
 const HeaderBox = styled.div`
   width: 1280px;
-  height: 100px;
+  height: 113px;
   margin: 0 auto;
   background: rgba(0, 0, 0, 0.9);
   /* background-color: darkgrey; */
