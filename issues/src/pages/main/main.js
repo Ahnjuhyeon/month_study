@@ -41,7 +41,10 @@ const MainPage = () => {
     // 페이지 변경 시에는 새로운 URL을 생성하여 페이지를 변경
     //이거를 쓰지 않으면 url에 나오지 않아용
     //펄페이지숫자를 늘렸더니 버튼이 늘어났다
-    setSearchParams({ page: newPage });
+    setSearchParams((prev) => {
+      prev.set("page", newPage);
+      return prev;
+    });
   };
   console.log(issuesList, currentPage, per_page);
   return (

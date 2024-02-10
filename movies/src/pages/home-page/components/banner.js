@@ -7,8 +7,7 @@ const Banner = () => {
     queryKey: [MOVIE_QUERY_KEY.BANNER_VIDEO, 787699],
     queryFn: () => getMovieVideo(787699),
   });
-  console.log("videoData = ", videoData);
-  //getMovieVideo
+
   return (
     <Wrapper>
       <VideoContent>
@@ -17,7 +16,7 @@ const Banner = () => {
             src={`https://www.youtube.com/embed/${videoData.results[0].key}?autoplay=1&mute=1`}
             frameBorder="0"
             allowFullScreen
-            autoplay
+            autoPlay
           />
         )}
       </VideoContent>

@@ -29,30 +29,35 @@ const IssuesFilter = () => {
   const onIssuesFilter = (e) => {
     const value = e.target.value;
     console.log(value);
-    // setSearchParams((prev) => {
-    //   return { ...prev, sort: value };
-    // });
-    searchParams.append("sort", value);
+    setSearchParams((prev) => {
+      prev.set("sort", value);
+      return prev;
+    });
   };
-
+  //  쌓는다
+  //set 덮어쓴다
   const onIssuesFilterState = (e) => {
     const value = e.target.value;
     console.log(value);
-    // setSearchParams((prev) => {
-    //   return { ...prev, state: value };
-    // });
-    searchParams.append("state", value);
+    setSearchParams((prev) => {
+      prev.set("state", value);
+      return prev;
+    });
   };
 
   const onIssuesFilterCount = (e) => {
     const value = e.target.value;
     console.log(value);
-    // setSearchParams((prev) => {
-    //   return { ...prev, per_page: value };
-    // });
-    searchParams.append("per_page", value);
+    setSearchParams((prev) => {
+      prev.set("per_page", value);
+      return prev;
+    });
   };
-
+  /*
+setSearchParams((prevParams) => {
+  prevParams.append('b', "789");
+});
+*/
   return (
     <Wrapper>
       <select onChange={onIssuesFilter} value={sort}>
