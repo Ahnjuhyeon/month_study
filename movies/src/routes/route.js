@@ -10,9 +10,10 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/:category",
+        path: "/:category?",
         element: <MainPage />,
       },
+      //? : useParams에서는 category 값이 없을 경우 undefined가 반환
       {
         path: "/detailPage",
         element: <DetailPage />,

@@ -12,7 +12,7 @@ const MovieList = () => {
   //   ? (pramsKey = MOVIE_QUERY_KEY.POPULAR)
   //   : (pramsKey = prams.category);
 
-  console.log(prams.category);
+  console.log("Used category parameter:", pramsKey);
   const { movieList, refetch } = useQueryMovieInfinity(`/movie/${pramsKey}`);
   console.log(movieList, "얏호!");
   return (
@@ -39,7 +39,7 @@ const MovieGrid = styled.div`
   gap: 40px;
 `;
 /*
-1. 기본페이지로 prams.category 가 popular로 나와야하는데 안나오는데?
-2. 헤더에서 클릭시 해당 파람키로 맞는 데이터 보여주기 
+1. 기본페이지로 prams.category 가 popular로 나와야하는데 안나오는데? 완
+2. 헤더에서 클릭시 해당 파람키로 맞는 데이터 보여주기 완 
 3.  배너 랜덤으로 바꾸기
 */
