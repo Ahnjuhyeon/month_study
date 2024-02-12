@@ -2,9 +2,16 @@ import { styled } from "styled-components";
 import { useQueryMovieInfinity } from "../../../hooks/use-query";
 import OneMovieContent from "../../../components/one-movie-content";
 import { useParams } from "react-router-dom";
+import { MOVIE_QUERY_KEY } from "../../../consts/queryKey";
 const MovieList = () => {
   const prams = useParams();
   let pramsKey = prams.category ?? "popular";
+
+  // let pramsKey = prams.category;
+  // pramsKey === undefined
+  //   ? (pramsKey = MOVIE_QUERY_KEY.POPULAR)
+  //   : (pramsKey = prams.category);
+
   console.log(prams.category);
   const { movieList, refetch } = useQueryMovieInfinity(`/movie/${pramsKey}`);
   console.log(movieList, "얏호!");
