@@ -1,29 +1,60 @@
 import { styled } from "styled-components";
 import { flexAlignCenter } from "../../styles/common.style";
 import SearchBox from "./components/search";
+import { useState } from "react";
+import { MOVIE_QUERY_KEY } from "../../consts/queryKey";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState(MOVIE_QUERY_KEY.POPULAR);
+  //main으로 이동
+  const onClickMainPage = () => {
+    navigate("/");
+    window.scroll({
+      top: 0,
+    });
+  };
+
+  const onOpenTab = (tabKey) => {
+    navigate(tabKey);
+    window.scroll({
+      top: 0,
+    });
+    setActiveTab(tabKey);
+  };
+
   return (
     <HeaderWrapper>
       <HeaderBox>
-        <Logo>
+        <Logo onClick={onClickMainPage}>
           <img src="/images/logo.png" alt="Logo" />
         </Logo>
         <FilterBar>
-          <Standard>상영 중</Standard>
           <Standard
-          //   onClick={() => onOpenTab(MOVIE_QUERY_KEY.UPCOMING)}
-          //   active={activeTab === MOVIE_QUERY_KEY.UPCOMING}
+            onClick={() => onOpenTab(MOVIE_QUERY_KEY.NOW_PLAYING)}
+            active={activeTab === MOVIE_QUERY_KEY.NOW_PLAYING}
+          >
+            상영 중
+          </Standard>
+          <Standard
+            onClick={() => onOpenTab(MOVIE_QUERY_KEY.UPCOMING)}
+            active={activeTab === MOVIE_QUERY_KEY.UPCOMING}
           >
             개봉 예정
           </Standard>
           <Standard
-          //   onClick={() => onOpenTab(MOVIE_QUERY_KEY.POPULAR)}
-          //   active={activeTab === MOVIE_QUERY_KEY.POPULAR}
+            onClick={() => onOpenTab(MOVIE_QUERY_KEY.POPULAR)}
+            active={activeTab === MOVIE_QUERY_KEY.POPULAR}
           >
             인기 작품
           </Standard>
-          <Standard>높은 평점</Standard>
+          <Standard
+            onClick={() => onOpenTab(MOVIE_QUERY_KEY.TOP_RATED)}
+            active={activeTab === MOVIE_QUERY_KEY.TOP_RATED}
+          >
+            높은 평점
+          </Standard>
         </FilterBar>
         <SearchBox />
         {/* <UserProfile>user</UserProfile> */}
