@@ -13,7 +13,7 @@ const MovieList = () => {
   return (
     <Wrapper>
       <MovieGrid>
-        {movieList?.pages[0]?.results?.map((movie, index) => (
+        {movieList?.pages[0].results?.map((movie, index) => (
           <OneMovieContent key={index} movie={movie} />
         ))}
       </MovieGrid>
