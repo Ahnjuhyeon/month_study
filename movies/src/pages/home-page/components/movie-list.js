@@ -2,14 +2,30 @@ import { styled } from "styled-components";
 import { useQueryMovieInfinity } from "../../../hooks/use-query";
 import OneMovieContent from "../../../components/one-movie-content";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+
 const MovieList = () => {
   const prams = useParams();
   let pramsKey = prams.category ?? "popular";
+  let pageParam = 1;
   //consol.log() => /movie/popular
   const { movieList, fetchNextPage, isFetching } = useQueryMovieInfinity(
-    `/movie/${pramsKey}`
+    `/movie/${pramsKey}?page=${pageParam}`
   );
   console.log(movieList && movieList.pages && movieList.pages[0], "얏호!");
+  // 스크롤 최하단 시 fetchNextPage실행
+  const handleScroll = () => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollTop = document.documentElement.scrollTop;
+    const clientHeight = document.documentElement.clientHeight;
+    if (scrollTop + clientHeight >= scrollHeight) return fetchNextPage();
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
   return (
     <Wrapper>
       <MovieGrid>
