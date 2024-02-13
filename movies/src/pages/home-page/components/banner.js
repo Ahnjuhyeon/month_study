@@ -7,7 +7,7 @@ const Banner = () => {
     queryKey: [MOVIE_QUERY_KEY.BANNER_VIDEO, 787699],
     queryFn: () => getMovieVideo(787699),
   });
-  //useQuery옵션 useQuery  enabled 사용해야한다
+  //useQuery옵션  useQuery  enabled 사용해야한다
   // 인피니티 쿼리도 써야하고 그 아이디도 랜덤으로 가지고 와야하는것
   return (
     <Wrapper>
