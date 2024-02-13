@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { MOVIE_QUERY_KEY } from "../consts/queryKey";
 import { fetchMovies } from "../apis/movie.api";
 
-export function useQueryMovieInfinity(pramsKey, pageParam) {
+export function useQueryMovieInfinity(pramsKey) {
   const {
     data: movieList,
     refetch,
@@ -10,7 +10,7 @@ export function useQueryMovieInfinity(pramsKey, pageParam) {
     hasNextPage,
     isFetching,
   } = useInfiniteQuery({
-    queryKey: [pramsKey, pageParam],
+    queryKey: [pramsKey],
     queryFn: ({ pageParam = 1 }) => fetchMovies(pramsKey, pageParam),
     getNextPageParam: (lastPage) => {
       const page = lastPage.page;

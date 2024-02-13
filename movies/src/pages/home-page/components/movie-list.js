@@ -9,7 +9,7 @@ const MovieList = () => {
   let pramsKey = prams.category ?? "popular";
   let pageParam = 1;
   //consol.log() => /movie/popular
-  const { movieList, fetchNextPage, isFetching } = useQueryMovieInfinity(
+  const { movieList, isFetching, fetchNextPage } = useQueryMovieInfinity(
     `/movie/${pramsKey}?page=${pageParam}`
   );
   console.log(movieList && movieList.pages && movieList.pages[0], "얏호!");
@@ -18,14 +18,16 @@ const MovieList = () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
-    if (scrollTop + clientHeight >= scrollHeight) return fetchNextPage();
+    if (scrollTop + clientHeight >= scrollHeight) console.log("heyyyyyy");
+    return fetchNextPage();
+    // 이거를 쓰면 movieList이게 호출이 된다 ...
   };
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  });
+  }, []);
   return (
     <Wrapper>
       <MovieGrid>
