@@ -1,15 +1,21 @@
 import { styled } from "styled-components";
 import { skipOverView, skipTitleView } from "../utils/over-flow-length";
+import { useNavigate } from "react-router-dom";
 
-const OneMovieContent = ({ movie, onOpenDetailPage }) => {
+const OneMovieContent = ({ movie }) => {
+  const navigate = useNavigate();
+  const onOpenDetailPage = () => {
+    navigate("/detailPage", {
+      state: {
+        movie: movie,
+      },
+    });
+  };
+
   return (
     <Wrapper>
       <Poster src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-      <HoverReveal
-        onClick={() => {
-          onOpenDetailPage(movie);
-        }}
-      >
+      <HoverReveal onClick={onOpenDetailPage}>
         <Content>
           <ContentScore>
             <span>★</span>

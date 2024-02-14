@@ -1,8 +1,20 @@
-import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { MOVIE_QUERY_KEY } from "../../consts/queryKey";
+import { getMovieVideo } from "../../apis/movie.api";
 const DetailPage = () => {
-  const params = useParams();
-  const movieId = params.movieId.replace(":", "");
+  // const params = useParams();
+  // const movieId = params.movieId.replace(":", "");
+
+  const location = useLocation();
+  const movie = location.state.movie;
+  console.log(movie);
+  const movieId = movie.id;
+  const { data: videoData } = useQuery(
+    [MOVIE_QUERY_KEY.DETAIL_VIDEO, movieId],
+    () => getMovieVideo(movieId)
+  );
   return (
     <Wrapper>
       <VideoContent>{/* <img /> */}</VideoContent>
@@ -10,16 +22,15 @@ const DetailPage = () => {
       <InfoContent>
         <ContentScore>
           <span>★</span>
-          {/* <span>{Math.floor(movie.vote_average * 10) / 10}</span> */}
-          <span>4.5</span>
+          <span>{Math.floor(movie.vote_average * 10) / 10}</span>
         </ContentScore>
         <ContentTitle>
-          <div>Movie.Title</div>
-          <div>release movieData.release_date</div>
+          <div>{movie.title}</div>
+          <div>{movie.release_date}</div>
         </ContentTitle>
         <Contents>
-          <div>한줄요약 : movieData.tagline</div>
-          <div>movieData.overview</div>
+          <div>{movie.tagline}</div>
+          <div>{movie.overview}</div>
         </Contents>
       </InfoContent>
       {/* 리뷰컴포넌트 */}
@@ -77,6 +88,7 @@ const Contents = styled.div`
     font-weight: 400;
   }
   div:last-child {
+    width: 900px;
     padding-top: 63px;
     font-size: 26px;
     font-weight: 300;

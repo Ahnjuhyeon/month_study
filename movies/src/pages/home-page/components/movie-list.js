@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 const MovieList = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const params = useParams();
   let paramsKey = params.category ?? "popular";
   // let pageParam = 1;
@@ -39,12 +39,17 @@ const MovieList = () => {
     };
   });
 
-  const onOpenDetailPage = (movie) => {
-    navigate(`/${paramsKey}/:${movie.id}`);
-    window.scroll({
-      top: 0,
-    });
-  };
+  // const onOpenDetailPage = (movie) => {
+  //   // navigate(`/${paramsKey}/:${movie.id}`);
+  //   // window.scroll({
+  //   //   top: 0,
+  //   // });
+  //   navigate("/detailPage", {
+  //     state: {
+  //       movie: movie,
+  //     },
+  //   });
+  // };
 
   return (
     <Wrapper>
@@ -53,7 +58,7 @@ const MovieList = () => {
           <OneMovieContent
             key={index}
             movie={movie}
-            onOpenDetailPage={onOpenDetailPage}
+            // onOpenDetailPage={onOpenDetailPage}
           />
         ))}
       </MovieGrid>
