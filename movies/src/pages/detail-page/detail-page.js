@@ -3,22 +3,30 @@ import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { MOVIE_QUERY_KEY } from "../../consts/queryKey";
 import { getMovieVideo } from "../../apis/movie.api";
-const DetailPage = () => {
-  // const params = useParams();
-  // const movieId = params.movieId.replace(":", "");
+// import SimilarMoviePage from ""
 
+const DetailPage = () => {
   const location = useLocation();
   const movie = location.state.movie;
-  console.log(movie);
   const movieId = movie.id;
   const { data: videoData } = useQuery(
     [MOVIE_QUERY_KEY.DETAIL_VIDEO, movieId],
     () => getMovieVideo(movieId)
   );
+
+  // console.log(videoData && videoData.results && videoData.results[0]);
   return (
     <Wrapper>
-      <VideoContent>{/* <img /> */}</VideoContent>
-
+      <VideoContent>
+        {videoData && (
+          <Video
+            src={`https://www.youtube.com/embed/${videoData.results[0].key}?autoplay=1&mute=1`}
+            frameBorder="0"
+            allowFullScreen
+            autoPlay
+          />
+        )}
+      </VideoContent>
       <InfoContent>
         <ContentScore>
           <span>★</span>
@@ -37,7 +45,7 @@ const DetailPage = () => {
       <div style={{ textAlign: "center" }}>리뷰보기</div>
       <SimilarMovieContent>
         <div>이 영화와 비슷해요!</div>
-        <div>ID??</div>
+        {/* <SimilarMoviePage /> */}
       </SimilarMovieContent>
     </Wrapper>
   );
@@ -49,9 +57,14 @@ const Wrapper = styled.div`
   padding-top: 100px;
 `;
 const VideoContent = styled.div`
-  background-color: beige;
+  border: 1px solid #ddd;
   width: 1280px;
   height: 760px;
+`;
+const Video = styled.iframe`
+  width: 1280px;
+  height: 760px;
+  overflow: hidden;
 `;
 
 const InfoContent = styled.div`
