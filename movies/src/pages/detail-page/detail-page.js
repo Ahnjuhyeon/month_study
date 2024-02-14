@@ -1,5 +1,8 @@
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 const DetailPage = () => {
+  const params = useParams();
+  const movieId = params.movieId.replace(":", "");
   return (
     <Wrapper>
       <VideoContent>{/* <img /> */}</VideoContent>

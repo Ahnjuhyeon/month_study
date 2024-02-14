@@ -1,10 +1,15 @@
 import { styled } from "styled-components";
 import { skipOverView, skipTitleView } from "../utils/over-flow-length";
-const OneMovieContent = ({ movie }) => {
+
+const OneMovieContent = ({ movie, onOpenDetailPage }) => {
   return (
     <Wrapper>
       <Poster src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-      <HoverReveal>
+      <HoverReveal
+        onClick={() => {
+          onOpenDetailPage(movie);
+        }}
+      >
         <Content>
           <ContentScore>
             <span>★</span>
