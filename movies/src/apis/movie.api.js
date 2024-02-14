@@ -14,7 +14,14 @@ export const getMovieVideo = async (movie_id) => {
 //movie_id 랜덤으로 받아야한다
 //시퀀스다이어그램!!
 
+//비슷한 영화목록
 export const getSimilarMovie = async (movieId) => {
-  const response = await axiosInstance.get(`/movie/${movieId}/similar`, {});
+  const response = await axiosInstance.get(`/movie/${movieId}/similar`);
+  return response.data;
+};
+
+//리뷰
+export const getReviews = async (movieId) => {
+  const response = await axiosInstance.get(`/movie/${movieId}/reviews`);
   return response.data;
 };

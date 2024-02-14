@@ -3,7 +3,8 @@ import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { MOVIE_QUERY_KEY } from "../../consts/queryKey";
 import { getMovieVideo } from "../../apis/movie.api";
-// import SimilarMoviePage from ""
+import SimilarMoviePage from "./components/similar-movie";
+import Review from "./components/review";
 
 const DetailPage = () => {
   const location = useLocation();
@@ -37,15 +38,15 @@ const DetailPage = () => {
           <div>{movie.release_date}</div>
         </ContentTitle>
         <Contents>
-          <div>{movie.tagline}</div>
+          {/* <div>{movie.tagline}</div> */}
           <div>{movie.overview}</div>
         </Contents>
       </InfoContent>
       {/* 리뷰컴포넌트 */}
-      <div style={{ textAlign: "center" }}>리뷰보기</div>
+      <Review />
       <SimilarMovieContent>
-        <div>이 영화와 비슷해요!</div>
-        {/* <SimilarMoviePage /> */}
+        <SimilarTitle>이 영화와 비슷해요!</SimilarTitle>
+        <SimilarMoviePage movieId={movieId} />
       </SimilarMovieContent>
     </Wrapper>
   );
@@ -96,13 +97,9 @@ const ContentTitle = styled.div`
 `;
 const Contents = styled.div`
   padding: 70px 0;
-  div:first-child {
-    font-size: 28px;
-    font-weight: 400;
-  }
+
   div:last-child {
     width: 900px;
-    padding-top: 63px;
     font-size: 26px;
     font-weight: 300;
   }
@@ -111,12 +108,22 @@ const Contents = styled.div`
 const SimilarMovieContent = styled.div`
   width: 1100px;
   margin: 0 auto;
-
+`;
+const SimilarTitle = styled.div`
+  font-size: 20px;
+  font-weight: 500;
+  padding: 20px 0%;
+  padding-left: 4px;
+`;
+/*
+//Contents
   div:first-child {
-    font-size: 20px;
+    font-size: 28px;
     font-weight: 400;
   }
+
+//SimilarTitle
   div:last-child {
     padding-top: 22px;
   }
-`;
+*/
