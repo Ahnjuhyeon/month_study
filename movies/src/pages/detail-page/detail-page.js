@@ -43,7 +43,7 @@ const DetailPage = () => {
         </Contents>
       </InfoContent>
       {/* 리뷰컴포넌트 */}
-      <Review />
+      <Review movieId={movieId} />
       <SimilarMovieContent>
         <SimilarTitle>이 영화와 비슷해요!</SimilarTitle>
         <SimilarMoviePage movieId={movieId} />
