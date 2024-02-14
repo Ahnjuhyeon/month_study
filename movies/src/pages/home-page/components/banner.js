@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { MOVIE_QUERY_KEY } from "../../../consts/queryKey";
 import { getMovieVideo } from "../../../apis/movie.api";
 const Banner = () => {

@@ -1,8 +1,9 @@
 import { axiosInstance } from "./core";
 
-export const fetchMovies = async (endpoint) => {
-  const response = await axiosInstance.get(endpoint);
-  return response.data;
+export const fetchMovies = async (paramsKey, pageParam) => {
+  const res = await axiosInstance.get(`movie/${paramsKey}?page=${pageParam}`);
+  console.log("paramsKey:", paramsKey, "pageParam:", pageParam);
+  return res.data;
 };
 //pramsKey
 //movie video language=en
