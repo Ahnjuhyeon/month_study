@@ -2,9 +2,15 @@ import { useQuery } from "react-query";
 import styled from "styled-components";
 import { MOVIE_QUERY_KEY } from "../../consts/queryKey";
 import { getSearchMovie } from "../../apis/movie.api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  skipOverViewSearch,
+  skipTitleView,
+} from "../../utils/over-flow-length";
 const SearchPage = () => {
+  const navigate = useNavigate();
   const params = useParams();
+
   console.log(params);
   const paramKeyword = params.keyWord.replace(":", "");
   const { data: searchdata } = useQuery([MOVIE_QUERY_KEY.CONTAIN_KEYWORD], () =>
@@ -23,16 +29,17 @@ const SearchPage = () => {
             />
           </MoviePoster>
           <MovieInfo>
-            <Title>movie.title</Title>
+            <Title>{skipTitleView(movie.title)}</Title>
             <Hr />
-            <div>movie.release_date</div>
-            <Content>
-              movie.overviewmovie.overviewmovie.
-              movie.overviewmovie.overviewmovie.
-              movie.overviewmovie.overviewmovie.
-              movie.overviewmovie.overviewmovie....
-            </Content>
-            <Button>상세보기</Button>
+            <div>{movie.release_date}</div>
+            <Content>{skipOverViewSearch(movie.overview)}</Content>
+            <Button
+              onClick={() => {
+                navigate(`/movie/:${movie.id}`);
+              }}
+            >
+              상세보기
+            </Button>
           </MovieInfo>
         </OneMovie>
       ))}
@@ -84,7 +91,8 @@ const Title = styled.div`
   font-weight: 700;
 `;
 const Content = styled.div`
-  font-size: 34px;
+  margin-top: 38px;
+  font-size: 24px;
   font-weight: 400;
 `;
 
