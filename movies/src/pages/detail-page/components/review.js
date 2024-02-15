@@ -105,7 +105,7 @@ const UserNickName = styled.div`
 const Written = styled.span`
   font-size: 14px;
   color: #999;
-  margin-left: 65%;
+  /* margin-left: 65%; */
 `;
 const Content = styled.div`
   padding-bottom: 30px;

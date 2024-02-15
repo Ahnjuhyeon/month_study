@@ -4,6 +4,7 @@ import SearchBox from "./components/search";
 import { useState } from "react";
 import { MOVIE_QUERY_KEY } from "../../consts/queryKey";
 import { useNavigate } from "react-router-dom";
+import { HeaderIcon } from "../../images/icon";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const Header = () => {
     <HeaderWrapper>
       <HeaderBox>
         <Logo onClick={onClickMainPage}>
-          <img src="/images/logo.png" alt="Logo" />
+          <img src={HeaderIcon.Logo} alt="Logo" />
         </Logo>
         <FilterBar>
           <Standard
@@ -84,9 +85,10 @@ const HeaderBox = styled.div`
 `;
 
 const Logo = styled.div`
-  width: 100px;
-  height: 40px;
   cursor: pointer;
+  & > img {
+    width: 80px;
+  }
 `;
 
 const FilterBar = styled.ul`
