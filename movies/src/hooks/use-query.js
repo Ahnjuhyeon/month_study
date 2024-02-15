@@ -14,7 +14,7 @@ export function useQueryMovieInfinity(paramsKey) {
     queryFn: ({ pageParam = 1 }) => fetchMovies(paramsKey, pageParam),
     getNextPageParam: (lastPage) => {
       const page = lastPage.page; //1
-      console.log("page", page);
+      // console.log("page", page);
       if (lastPage.total_pages === page) return false;
       return page + 1;
     },

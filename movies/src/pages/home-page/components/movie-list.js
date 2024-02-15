@@ -20,6 +20,7 @@ const MovieList = () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
+
     if (scrollTop + clientHeight >= scrollHeight) {
       console.log("최하단!");
       return fetchNextPage(); // 이게 안 찍힘...
@@ -28,16 +29,16 @@ const MovieList = () => {
   };
 
   useEffect(() => {
-    console.log("scrollTop", document.documentElement.scrollTop); // 이게 실시간 감지가 안 되는 건가 계속 0만 뜸
-    console.log("clientHeight", document.documentElement.clientHeight); //clientHeight 1065
-    console.log("scrollHeight", document.documentElement.scrollHeight); // 3003..? 왜 커..?
+    // console.log("scrollTop", document.documentElement.scrollTop); // 이게 실시간 감지가 안 되는 건가 계속 0만 뜸
+    // console.log("clientHeight", document.documentElement.clientHeight); //clientHeight 1065
+    // console.log("scrollHeight", document.documentElement.scrollHeight); // 3003..? 왜 커..?
     // clientHeight 늘리려고 전체화면으로 바꾸면 최하단! 까지는 떠용, 페이지 값도 늘어남.. 근데 list는 안 보임, 근데 network/response에는 값이 뜸..
     //도움도움도움
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  });
+  }, []);
 
   return (
     <Wrapper>

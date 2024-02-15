@@ -15,7 +15,7 @@ const Banner = () => {
     movieList?.pages[0]?.results[
       Math.floor(Math.random() * movieList?.pages[0]?.results.length)
     ].id;
-  console.log(randomMovieId);
+  // console.log(randomMovieId);
   //useQuery옵션  useQuery  enabled 사용해야한다
   // 인피니티 쿼리도 써야하고 그 아이디도 랜덤으로 가지고 와야하는것
 
