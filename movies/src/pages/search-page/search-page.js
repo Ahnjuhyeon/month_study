@@ -35,7 +35,11 @@ const SearchPage = () => {
             <Content>{skipOverViewSearch(movie.overview)}</Content>
             <Button
               onClick={() => {
-                navigate(`/movie/:${movie.id}`);
+                navigate("/detailPage", {
+                  state: {
+                    movie: movie,
+                  },
+                });
               }}
             >
               상세보기
