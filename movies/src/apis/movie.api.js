@@ -25,3 +25,9 @@ export const getReviews = async (movieId) => {
   const response = await axiosInstance.get(`/movie/${movieId}/reviews`);
   return response.data;
 };
+
+//검색어
+export const getSearchMovie = async (query) => {
+  const response = await axiosInstance.get(`/search/movie?query=${query}`);
+  return response.data;
+};

@@ -1,24 +1,41 @@
+import { useQuery } from "react-query";
 import styled from "styled-components";
+import { MOVIE_QUERY_KEY } from "../../consts/queryKey";
+import { getSearchMovie } from "../../apis/movie.api";
+import { useParams } from "react-router-dom";
 const SearchPage = () => {
+  const params = useParams();
+  console.log(params);
+  const paramKeyword = params.keyWord.replace(":", "");
+  const { data: searchdata } = useQuery([MOVIE_QUERY_KEY.CONTAIN_KEYWORD], () =>
+    getSearchMovie(paramKeyword)
+  );
+  searchdata && console.log(searchdata);
+  //paramKeyword
   return (
     <Wrapper>
-      <OneMovie>
-        <MoviePoster>
-          <img />
-        </MoviePoster>
-        <MovieInfo>
-          <Title>movie.title</Title>
-          <Hr />
-          <div>movie.release_date</div>
-          <Content>
-            movie.overviewmovie.overviewmovie.
-            movie.overviewmovie.overviewmovie.
-            movie.overviewmovie.overviewmovie.
-            movie.overviewmovie.overviewmovie....
-          </Content>
-          <Button>상세보기</Button>
-        </MovieInfo>
-      </OneMovie>
+      {searchdata?.results.map((movie) => (
+        <OneMovie>
+          <MoviePoster>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt="movie poster"
+            />
+          </MoviePoster>
+          <MovieInfo>
+            <Title>movie.title</Title>
+            <Hr />
+            <div>movie.release_date</div>
+            <Content>
+              movie.overviewmovie.overviewmovie.
+              movie.overviewmovie.overviewmovie.
+              movie.overviewmovie.overviewmovie.
+              movie.overviewmovie.overviewmovie....
+            </Content>
+            <Button>상세보기</Button>
+          </MovieInfo>
+        </OneMovie>
+      ))}
     </Wrapper>
   );
 };
@@ -31,10 +48,12 @@ const Wrapper = styled.div`
 const OneMovie = styled.div`
   display: flex;
   border-bottom: 1px solid #bdbdbd;
+  width: 1100px;
+  margin: 0 auto;
 `;
-/*
+
 const MoviePoster = styled.div`
-  margin: 0;
+  margin-top: 66px;
   img {
     min-width: 230px;
     max-width: 230px;
@@ -42,11 +61,6 @@ const MoviePoster = styled.div`
     display: inline-block;
     border: 1px solid #111;
   }
-`;*/
-const MoviePoster = styled.div`
-  width: 635px;
-  height: 573px;
-  background-color: blueviolet;
 `;
 
 const MovieInfo = styled.div`
@@ -75,7 +89,7 @@ const Content = styled.div`
 `;
 
 const Button = styled.button`
-  margin-top: 56px;
+  margin-top: 38px;
   width: 192px;
   height: 60px;
   border-radius: 30px;

@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
         element: <DetailPage />,
       },
       {
-        path: "/searchPage",
+        path: "/searchPage/:keyWord?",
         element: <SearchPage />,
       },
     ],
