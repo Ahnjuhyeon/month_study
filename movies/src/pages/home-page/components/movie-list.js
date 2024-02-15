@@ -39,27 +39,11 @@ const MovieList = () => {
     };
   });
 
-  // const onOpenDetailPage = (movie) => {
-  //   // navigate(`/${paramsKey}/:${movie.id}`);
-  //   // window.scroll({
-  //   //   top: 0,
-  //   // });
-  //   navigate("/detailPage", {
-  //     state: {
-  //       movie: movie,
-  //     },
-  //   });
-  // };
-
   return (
     <Wrapper>
       <MovieGrid>
         {movieList?.pages[0].results?.map((movie, index) => (
-          <OneMovieContent
-            key={index}
-            movie={movie}
-            // onOpenDetailPage={onOpenDetailPage}
-          />
+          <OneMovieContent key={index} movie={movie} />
         ))}
       </MovieGrid>
     </Wrapper>

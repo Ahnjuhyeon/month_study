@@ -2,13 +2,26 @@ import styled from "styled-components";
 import { useQuery } from "react-query";
 import { MOVIE_QUERY_KEY } from "../../../consts/queryKey";
 import { getMovieVideo } from "../../../apis/movie.api";
+import { useQueryMovieInfinity } from "../../../hooks/use-query";
+import { useParams } from "react-router-dom";
 const Banner = () => {
-  const { data: videoData } = useQuery({
-    queryKey: [MOVIE_QUERY_KEY.BANNER_VIDEO, 787699],
-    queryFn: () => getMovieVideo(787699),
-  });
+  const params = useParams();
+  let paramsKey = params.category ?? "popular";
+
+  const { movieList } = useQueryMovieInfinity(paramsKey);
+  console.log(movieList && movieList.pages && movieList.pages[0].results); //id
+  // const randomMovieId = movieList.pages[0].results[Math.floor(Math.random() * movieList.pages[0].results.length)].id;
+  const randomMovieId =
+    movieList?.pages[0]?.results[
+      Math.floor(Math.random() * movieList?.pages[0]?.results.length)
+    ].id;
+  console.log(randomMovieId);
   //useQuery옵션  useQuery  enabled 사용해야한다
   // 인피니티 쿼리도 써야하고 그 아이디도 랜덤으로 가지고 와야하는것
+  const { data: videoData } = useQuery({
+    queryKey: [MOVIE_QUERY_KEY.BANNER_VIDEO, randomMovieId],
+    queryFn: () => getMovieVideo(randomMovieId),
+  });
   return (
     <Wrapper>
       <VideoContent>
