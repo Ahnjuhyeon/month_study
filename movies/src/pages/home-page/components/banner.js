@@ -7,10 +7,10 @@ import { useParams } from "react-router-dom";
 const Banner = () => {
   const params = useParams();
   let paramsKey = params.category ?? "popular";
-
+  //movie.id 받아올 데이터
   const { movieList } = useQueryMovieInfinity(paramsKey);
-  console.log(movieList && movieList.pages && movieList.pages[0].results); //id
-  // const randomMovieId = movieList.pages[0].results[Math.floor(Math.random() * movieList.pages[0].results.length)].id;
+  // console.log(movieList && movieList.pages && movieList.pages[0].results); //id
+  //랜덤으로 돌릴 영화 목록
   const randomMovieId =
     movieList?.pages[0]?.results[
       Math.floor(Math.random() * movieList?.pages[0]?.results.length)
@@ -18,6 +18,8 @@ const Banner = () => {
   console.log(randomMovieId);
   //useQuery옵션  useQuery  enabled 사용해야한다
   // 인피니티 쿼리도 써야하고 그 아이디도 랜덤으로 가지고 와야하는것
+
+  // 영화 비디오 목록
   const { data: videoData } = useQuery({
     queryKey: [MOVIE_QUERY_KEY.BANNER_VIDEO, randomMovieId],
     queryFn: () => getMovieVideo(randomMovieId),
