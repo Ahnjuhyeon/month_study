@@ -102,6 +102,6 @@ const Standard = styled.div`
   cursor: pointer;
   &:hover {
     font-weight: bold;
-    color: #ff0458;
+    font-size: 20px;
   }
 `;

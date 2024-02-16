@@ -22,10 +22,23 @@ const SearchBox = () => {
       top: 0,
     });
   };
+
+  const onSearchIconClick = () => {
+    const keyword = textValue;
+
+    // validation check
+    const regExp = /[A-Za-z]+/gi;
+    const keywordCheck = keyword.match(regExp);
+
+    navigate(`/searchPage/:${keywordCheck}`);
+    window.scroll({
+      top: 0,
+    });
+  };
   return (
     <>
       <InputBox>
-        <SearchIcon>
+        <SearchIcon onClick={onSearchIconClick}>
           <img src={HeaderIcon.search} />
         </SearchIcon>
         <form onSubmit={onOpenSearchPage}>
