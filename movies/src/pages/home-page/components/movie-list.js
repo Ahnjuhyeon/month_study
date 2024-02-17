@@ -3,43 +3,20 @@ import { useQueryMovieInfinity } from "../../../hooks/use-query";
 import OneMovieContent from "../../../components/one-movie-content";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 const MovieList = () => {
   // const navigate = useNavigate();
   const params = useParams();
+  const [ref, inView] = useInView();
   let paramsKey = params.category ?? "popular";
-  // let pageParam = 1;
   //consol.log() => /movie/popular
   const { movieList, fetchNextPage } = useQueryMovieInfinity(paramsKey);
 
   // console.log(movieList && movieList.pages && movieList.pages[0], "얏호!");
-
-  // 스크롤 최하단 시 fetchNextPage실행
-  const handleScroll = () => {
-    console.log("scrolling..."); // 얘는 계속 되는데
-    const scrollHeight = document.documentElement.scrollHeight;
-    const scrollTop = document.documentElement.scrollTop;
-    const clientHeight = document.documentElement.clientHeight;
-
-    if (scrollTop + clientHeight >= scrollHeight) {
-      console.log("최하단!");
-      return fetchNextPage(); // 이게 안 찍힘...
-    }
-    // 이거를 쓰면 movieList이게 호출이 된다 ...
-  };
-
   useEffect(() => {
-    // console.log("scrollTop", document.documentElement.scrollTop); // 이게 실시간 감지가 안 되는 건가 계속 0만 뜸
-    // console.log("clientHeight", document.documentElement.clientHeight); //clientHeight 1065
-    // console.log("scrollHeight", document.documentElement.scrollHeight); // 3003..? 왜 커..?
-    // clientHeight 늘리려고 전체화면으로 바꾸면 최하단! 까지는 떠용, 페이지 값도 늘어남.. 근데 list는 안 보임, 근데 network/response에는 값이 뜸..
-    //도움도움도움
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
+    console.log(inView);
+  }, [inView]);
   return (
     <Wrapper>
       <MovieGrid>
@@ -47,6 +24,7 @@ const MovieList = () => {
           <OneMovieContent key={index} movie={movie} />
         ))}
       </MovieGrid>
+      <div ref={ref}></div>
     </Wrapper>
   );
 };

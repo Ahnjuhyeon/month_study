@@ -55,3 +55,4 @@ const VideoContent = styled.div`
   width: 1280px;
   height: 760px;
 `;
+//undefined 처리해야한다~

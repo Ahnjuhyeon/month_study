@@ -46,7 +46,7 @@ const Poster = styled.img`
   border-radius: 5px;
 `;
 
-const Content = styled.p`
+const Content = styled.div`
   padding: 30px;
 `;
 const ContentScore = styled.div`

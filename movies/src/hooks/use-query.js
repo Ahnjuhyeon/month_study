@@ -14,10 +14,10 @@ export function useQueryMovieInfinity(paramsKey) {
     queryFn: ({ pageParam = 1 }) => fetchMovies(paramsKey, pageParam),
     getNextPageParam: (lastPage) => {
       const page = lastPage.page; //1
-      // console.log("page", page);
+      console.log("page", lastPage);
       if (lastPage.total_pages === page) return false;
-      return page + 1;
     },
+    retry: false,
   });
   // console.log(paramsKey, "무비리스트는!!!=", movieList); //popular/리스트 나와용
   return { movieList, refetch, fetchNextPage, isFetching, hasNextPage };
