@@ -11,18 +11,24 @@ const MovieList = () => {
   const [ref, inView] = useInView();
   let paramsKey = params.category ?? "popular";
   //consol.log() => /movie/popular
-  const { movieList, fetchNextPage } = useQueryMovieInfinity(paramsKey);
+  const { data: movieList, fetchNextPage } = useQueryMovieInfinity(paramsKey);
 
   // console.log(movieList && movieList.pages && movieList.pages[0], "얏호!");
   useEffect(() => {
     console.log(inView);
-  }, [inView]);
+    // 특정 요소가 감지되었을 때 무한 스크롤링
+    // 마우스 스크롤링 이벤트 --> 쓰로틀링 (중복요청) ---> view box가 달라졌을 때 스크롤 위치 계산
+    // 복붙한 코드란 이야기야!!! 누가 복붙하래
+    fetchNextPage();
+  }, [fetchNextPage, inView]);
   return (
     <Wrapper>
       <MovieGrid>
-        {movieList?.pages[0].results?.map((movie, index) => (
-          <OneMovieContent key={index} movie={movie} />
-        ))}
+        {movieList?.pages?.map((page) =>
+          page.results?.map((movie, index) => (
+            <OneMovieContent key={index} movie={movie} />
+          ))
+        )}
       </MovieGrid>
       <div ref={ref}></div>
     </Wrapper>

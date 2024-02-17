@@ -3,22 +3,14 @@ import { fetchMovies } from "../apis/movie.api";
 import { useInfiniteQuery } from "react-query";
 
 export function useQueryMovieInfinity(paramsKey) {
-  const {
-    data: movieList,
-    refetch,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-  } = useInfiniteQuery({
+  return useInfiniteQuery({
     queryKey: [paramsKey],
     queryFn: ({ pageParam = 1 }) => fetchMovies(paramsKey, pageParam),
     getNextPageParam: (lastPage) => {
       const page = lastPage.page; //1
-      console.log("page", lastPage);
+      // console.log("page", lastPage);
       if (lastPage.total_pages === page) return false;
+      return page + 1;
     },
-    retry: false,
   });
-  // console.log(paramsKey, "무비리스트는!!!=", movieList); //popular/리스트 나와용
-  return { movieList, refetch, fetchNextPage, isFetching, hasNextPage };
 }

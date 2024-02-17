@@ -1,15 +1,20 @@
 import styled from "styled-components";
 import { useQuery } from "react-query";
 import { MOVIE_QUERY_KEY } from "../../../consts/queryKey";
-import { getMovieVideo } from "../../../apis/movie.api";
+import { fetchMovies, getMovieVideo } from "../../../apis/movie.api";
 import { useQueryMovieInfinity } from "../../../hooks/use-query";
 import { useParams } from "react-router-dom";
 const Banner = () => {
   const params = useParams();
   let paramsKey = params.category ?? "popular";
   //movie.id 받아올 데이터
-  const { movieList } = useQueryMovieInfinity(paramsKey);
+  const { data: movieList } = useQuery({
+    queryKey: ["get-movie"],
+    queryFn: () => fetchMovies(paramsKey),
+  });
+
   // console.log(movieList && movieList.pages && movieList.pages[0].results); //id
+  console.log(movieList); //id
   //랜덤으로 돌릴 영화 목록
   const randomMovieId =
     movieList?.pages[0]?.results[
@@ -23,6 +28,7 @@ const Banner = () => {
   const { data: videoData } = useQuery({
     queryKey: [MOVIE_QUERY_KEY.BANNER_VIDEO, randomMovieId],
     queryFn: () => getMovieVideo(randomMovieId),
+    enabled: !!randomMovieId,
   });
   return (
     <Wrapper>
