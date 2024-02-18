@@ -8,13 +8,17 @@ const Banner = () => {
   const params = useParams();
   let paramsKey = params.category ?? "popular";
   //movie.id 받아올 데이터
-  const { data: movieList } = useQuery({
+  const { data: movieList, isLoading } = useQuery({
     queryKey: ["get-movie"],
-    queryFn: () => fetchMovies(paramsKey),
+    queryFn: () => fetchMovies(paramsKey, 1),
   });
+  if (isLoading || !movieList) {
+    return <div>Loading...</div>;
+  }
+
+  console.log(movieList[0]);
 
   // console.log(movieList && movieList.pages && movieList.pages[0].results); //id
-  console.log(movieList); //id
   //랜덤으로 돌릴 영화 목록
   const randomMovieId =
     movieList?.pages[0]?.results[
