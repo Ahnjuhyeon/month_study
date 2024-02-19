@@ -10,6 +10,9 @@ const OneMovieContent = ({ movie }) => {
         movie: movie,
       },
     });
+    window.scroll({
+      top: 0,
+    });
   };
 
   return (

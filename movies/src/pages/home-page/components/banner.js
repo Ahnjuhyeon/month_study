@@ -14,7 +14,7 @@ const Banner = () => {
   const randomMovieId =
     movieList?.results[Math.floor(Math.random() * movieList?.results.length)]
       .id;
-  console.log(randomMovieId);
+  // console.log(randomMovieId);
   const { data: videoData } = useQuery({
     queryKey: [MOVIE_QUERY_KEY.BANNER_VIDEO, randomMovieId],
     queryFn: () => getMovieVideo(randomMovieId),
@@ -24,14 +24,13 @@ const Banner = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(movieList && movieList?.results);
+  // console.log(movieList && movieList?.results);
 
   // console.log(movieList && movieList.pages && movieList.pages[0].results); //id
   //랜덤으로 돌릴 영화 목록
 
   // 영화 비디오 목록
 
-  console.log(videoData);
   return (
     <Wrapper>
       <VideoContent>
