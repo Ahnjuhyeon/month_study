@@ -1,13 +1,41 @@
 import styled from "styled-components";
 
+import { useState } from "react";
+import { useAuth } from "../../../provider/auth-provider";
+
 const SignIn = () => {
-  const onSubmitSignIn = () => {};
+  const { SignIn } = useAuth();
+  const [email, setEmail] = useState(""); // email state 추가
+  const [password, setPassword] = useState(""); // password state 추가
+  //signIn
+  const onSubmitSignIn = async (e) => {
+    e.preventDefault();
+    console.log(email);
+    // try {
+    //   const res = await SignIn();
+    //   alert("로그인이 완료되었습니다.");
+    //   navigate("/todo");
+    // } catch (err) {
+    //   alert(err.res);
+    // }
+  };
 
   return (
     <Wrapper onSubmit={onSubmitSignIn}>
-      <input placeholder="email" />
-      <input placeholder="password" />
-      <Button>LOGIN</Button>
+      <input
+        id="email"
+        placeholder="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)} // input 값이 변경될 때 email state 업데이트
+      />
+      <input
+        id="pw"
+        placeholder="password"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)} // input 값이 변경될 때 password state 업데이트
+      />
+      <Button type="submit">LOGIN</Button>
     </Wrapper>
   );
 };
