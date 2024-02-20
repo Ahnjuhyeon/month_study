@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const LoginPage = () => {
   const [isOpenLogin, setIsOpenLogin] = useState(false);
+
   return (
     <Wrapper>
       <Header>
@@ -29,13 +30,16 @@ const LoginPage = () => {
 };
 export default LoginPage;
 const Wrapper = styled.div`
-  width: 1024px;
-  margin: 0 auto;
-  background-color: aliceblue;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 const Header = styled.div`
-  background-color: wheat;
-  width: 360px;
+  background-color: #75aff2;
+  width: 363px;
   height: 48px;
   position: relative;
   display: flex;
@@ -46,8 +50,9 @@ const Header = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    color: #fff;
     &:hover {
-      background-color: goldenrod;
+      background-color: #97c7ff;
     }
   }
 `;
