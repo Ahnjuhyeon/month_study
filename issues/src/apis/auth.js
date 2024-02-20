@@ -6,12 +6,14 @@ const AuthApi = {
   //sign-in
   async signIn(email, pw) {
     const res = await axiosLoginInstance().post(PATH + `/sign-in`, email, pw);
+    console.log(res);
     return res.data;
   },
 
   //sign-up
   async signUp(email, pw) {
     const res = await axiosLoginInstance().post(`${PATH}/sign-up`, email, pw);
+    console.log(res);
     return res.data;
   },
 

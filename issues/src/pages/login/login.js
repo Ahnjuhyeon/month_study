@@ -24,7 +24,7 @@ const LoginPage = () => {
           SIGN-UP
         </div>
       </Header>
-      {isOpenLogin ? <SignUp /> : <SignIn />}
+      {isOpenLogin ? <SignUp setIsOpenLogin={setIsOpenLogin} /> : <SignIn />}
     </Wrapper>
   );
 };

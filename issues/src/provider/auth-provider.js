@@ -34,6 +34,7 @@ export const useAuth = () => {
 
   const SignUp = async (email, pw) => {
     const res = await AuthApi.signUp(email, pw);
+    console.log(res);
     return res;
   };
 

@@ -1,20 +1,21 @@
 import styled from "styled-components";
-
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../../provider/auth-provider";
 
 const SignIn = () => {
   const { SignIn } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState(""); // email state 추가
   const [password, setPassword] = useState(""); // password state 추가
   //signIn
   const onSubmitSignIn = async (e) => {
     e.preventDefault();
-    console.log(email);
+    console.log(email, password);
     // try {
-    //   const res = await SignIn();
+    //   const res = await SignIn(email, password);
     //   alert("로그인이 완료되었습니다.");
-    //   navigate("/todo");
+    //   navigate("/");
     // } catch (err) {
     //   alert(err.res);
     // }
