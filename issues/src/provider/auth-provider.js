@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = TokenRepository.getToken();
     if (token) {
+      console.log(token);
       setAccessToken(token);
     }
   }, []);
