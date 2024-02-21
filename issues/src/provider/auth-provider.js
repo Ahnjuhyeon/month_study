@@ -25,20 +25,29 @@ export default AuthProvider;
 export const useAuth = () => {
   const [accessToken, setAccessToken] = useContext(AuthContext);
 
-  const SignIn = async (email, pw) => {
-    const res = await AuthApi.signIn(email, pw);
+  const SignIn = async (inform) => {
+    const res = await AuthApi.signIn(inform);
     setAccessToken(res.token);
     TokenRepository.setToken(res.token);
     console.log(res);
     return res;
   };
 
-  const SignUp = async (email, pw) => {
-    const res = await AuthApi.signUp(email, pw);
-    console.log(res);
-    return res;
+  // const SignUp = async (inform) => {
+  //   const res = await AuthApi.signUp(inform);
+  //   console.log(res);
+  //   return res;
+  // };
+  const SignUp = async (inform) => {
+    try {
+      const res = await AuthApi.signUp(inform);
+      console.log(res);
+      return res;
+    } catch (error) {
+      console.error("SignUp 에러다에러:", error);
+      throw error; // 이 부분을 추가해서 에러가 발생하면 상위에서 처리하도록 설정
+    }
   };
-
   const SignOut = async () => {
     await AuthApi.logOut();
     setAccessToken(null);

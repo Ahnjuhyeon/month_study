@@ -7,14 +7,17 @@ const SignUp = ({ setIsOpenLogin }) => {
   const { SignUp } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState(""); // email state 추가
-  const [pw, setpw] = useState(""); // password state 추가
+  const [password, setPassword] = useState(""); // password state 추가
 
   //signUp
   const onSubmitSignUp = async (e) => {
     e.preventDefault();
-    console.log(email, pw);
+    const inform = {
+      email,
+      password,
+    };
     try {
-      const res = await SignUp(email, pw);
+      const res = await SignUp(inform);
       //어떻게 로그인으로 보낼까?
       console.log(res);
       alert("축하합니다");
@@ -38,8 +41,8 @@ const SignUp = ({ setIsOpenLogin }) => {
         id="pw"
         placeholder="password"
         type="password"
-        value={pw}
-        onChange={(e) => setpw(e.target.value)} // input 값이 변경될 때 password state 업데이트
+        value={password}
+        onChange={(e) => setPassword(e.target.value)} // input 값이 변경될 때 password state 업데이트
       />
       {/* <input placeholder="password confirm" /> */}
 

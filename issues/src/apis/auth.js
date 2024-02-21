@@ -4,15 +4,15 @@ const PATH = "/todo/user";
 
 const AuthApi = {
   //sign-in
-  async signIn(email, pw) {
-    const res = await axiosLoginInstance().post(PATH + `/sign-in`, email, pw);
+  async signIn(inform) {
+    const res = await axiosLoginInstance().post(PATH + `/sign-in`, inform);
     console.log(res);
     return res.data;
   },
 
   //sign-up
-  async signUp(email, pw) {
-    const res = await axiosLoginInstance().post(`${PATH}/sign-up`, email, pw);
+  async signUp(inform) {
+    const res = await axiosLoginInstance().post(`${PATH}/sign-up`, inform);
     console.log(res);
     return res.data;
   },
@@ -24,6 +24,3 @@ const AuthApi = {
   },
 };
 export default AuthApi;
-/*
-email,pw
-*/

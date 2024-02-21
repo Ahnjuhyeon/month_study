@@ -8,25 +8,26 @@ export const axiosInstance = axios.create({
   // },
 });
 
-export const axiosLoginInstance = axios.create({
-  baseURL: "https://topdragon.co.kr",
-  headers: {
-    Authorization: `Bearer ${TokenRepository.getToken()}`,
-  },
-  withCredentials: true,
+// export const axiosLoginInstance = axios.create({
+//   baseURL: "https://topdragon.co.kr",
+//   headers: {
+//     Authorization: `Bearer ${TokenRepository.getToken()}`,
+//   },
+//   withCredentials: true,
+// });
+
+export const axiosLoginInstance = () => {
+  return axios.create({
+    baseURL: "https://topdragon.co.kr",
+    headers: {
+      Authorization: `Bearer ${TokenRepository.getToken()}`,
+    },
+    withCredentials: true,
+  });
+};
+
+axiosLoginInstance.interceptors.request.use(function (config) {
+  const token = TokenRepository.getToken();
+  config.headers.Authorization = token ? `Bearer ${token}` : "";
+  return config;
 });
-
-axiosLoginInstance.interceptors.request.use(
-  (config) => {
-    const token = TokenRepository.getToken();
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-export default axiosLoginInstance;
