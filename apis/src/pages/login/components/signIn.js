@@ -28,9 +28,9 @@ const Signin = () => {
     try {
       const res = await SignIn(inform);
       alert("로그인이 완료되었습니다.");
-      navigate("/todo");
+      navigate("/main");
     } catch (err) {
-      alert(err.res);
+      alert("일치하지 않습니다");
     }
   };
 
