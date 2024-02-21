@@ -3,7 +3,6 @@ import TokenRepository from "../repository/token-repository";
 import AuthApi from "../apis/auth";
 
 const AuthContext = createContext();
-
 const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(TokenRepository.getToken());
   useEffect(() => {
@@ -33,21 +32,11 @@ export const useAuth = () => {
     return res;
   };
 
-  // const SignUp = async (inform) => {
-  //   const res = await AuthApi.signUp(inform);
-  //   console.log(res);
-  //   return res;
-  // };
   const SignUp = async (inform) => {
-    try {
-      const res = await AuthApi.signUp(inform);
-      console.log(res);
-      return res;
-    } catch (error) {
-      console.error("SignUp 에러다에러:", error);
-      throw error; // 이 부분을 추가해서 에러가 발생하면 상위에서 처리하도록 설정
-    }
+    const res = await AuthApi.signUp(inform);
+    return res;
   };
+
   const SignOut = async () => {
     await AuthApi.logOut();
     setAccessToken(null);

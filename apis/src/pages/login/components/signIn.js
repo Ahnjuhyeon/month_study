@@ -6,8 +6,10 @@ import InputBox from "../../../components/input";
 import { schema2 } from "../../../utils/schema";
 import ButtonBox from "../../../components/button";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useAuth } from "../../../provider/auth-provider";
 
 const Signin = () => {
+  const { SignIn } = useAuth();
   const navigate = useNavigate();
   const {
     register,
@@ -22,14 +24,14 @@ const Signin = () => {
   };
   //signIn
   const onSubmitSignIn = async () => {
-    // console.log(inform);
-    // try {
-    //   const res = await SignIn(inform);
-    //   alert("로그인이 완료되었습니다.");
-    //   navigate("/todo");
-    // } catch (err) {
-    //   alert(err.res);
-    // }
+    console.log(inform);
+    try {
+      const res = await SignIn(inform);
+      alert("로그인이 완료되었습니다.");
+      navigate("/todo");
+    } catch (err) {
+      alert(err.res);
+    }
   };
 
   return (

@@ -81,6 +81,5 @@ const Input = styled.input`
 `;
 const InputErrors = styled.p`
   margin-bottom: 5px;
-  color: ${({ theme }) => theme.COLORS.error};
-  font-size: ${({ theme }) => theme.FONT_SIZE.small};
+  color: red;
 `;

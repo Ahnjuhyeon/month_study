@@ -7,7 +7,7 @@ import ButtonBox from "../../../components/button";
 import { flexCenter } from "../../../styles/common.style";
 import { useAuth } from "../../../provider/auth-provider";
 
-const Signup = ({ setIsLoginForm }) => {
+const Signup = ({ setIsOpenLogin }) => {
   const { SignUp } = useAuth();
   const {
     register,
@@ -22,14 +22,13 @@ const Signup = ({ setIsLoginForm }) => {
     pw,
   };
 
-  const onSubmitSignUp = async (e) => {
-    e.preventDefault();
+  const onSubmitSignUp = async () => {
     try {
       const res = await SignUp(inform);
       //어떻게 로그인으로 보낼까?
       console.log(res);
       alert("축하합니다");
-      setIsLoginForm(false);
+      setIsOpenLogin(false);
       alert("다시 로그인해주세요");
       // nvigate("/?page=todo");
     } catch (err) {
